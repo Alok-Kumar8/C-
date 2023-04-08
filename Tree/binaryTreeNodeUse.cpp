@@ -34,6 +34,40 @@ void print(binaryTreeNode<int>* root){
     print(root->right);
 }
 
+binaryTreeNode<int>* btn(binaryTreeNode<int>* root, int target){
+    if(root == NULL){
+        return NULL;
+    }
+
+    if(root->data == target){
+        return root;
+    }
+    else if(root->data < target){
+        binaryTreeNode<int>* leftROOt = btn(root->left, target);
+        return leftROOt;
+    }else if(root->data > target){
+        binaryTreeNode<int>* rightRoot = btn(root->right, target);
+        return rightRoot;
+    }
+
+}
+
+void range(binaryTreeNode<int>* root, int k1, int k2){
+    if(root == NULL){
+        return;
+    }
+
+    if(root->data >= k1 && root->data <= k2){
+        cout << root->data << endl;
+    }
+    else if(root->data < k1){
+        range(root->left, k1, k2);
+    }
+    else if(root->data > k1){
+        range(root->right, k1, k2);
+    }
+}
+
 int main(){
     // binaryTreeNode<int>* root = new binaryTreeNode<int>(1);
     // binaryTreeNode<int>* node1 = new binaryTreeNode<int>(2);
